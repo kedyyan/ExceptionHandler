@@ -1,0 +1,13 @@
+body {
+    font-size: 1em;
+}
+
+ul {
+    line-height: 1.8em;
+}
+
+.property {
+    float: left;
+    font-weight: 600;
+    width: 80px;
+}
