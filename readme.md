@@ -5,7 +5,7 @@ A simple exception handler for PHP.
 
 ## Mechanism
 
-Here is a way of how to use this component.
+Here is a example of how to use it.
 
 ```php
 <?php
@@ -24,6 +24,8 @@ An example of how is made a template can be found in the "example/" folder.
 I have added a new feature: you can now treat errors as exceptions.
 
 ```php
+<?php
+
 $exceptionHandler->handleErrorsWithLevel(-1);   // Transform errors into exceptions
 
 $result = 2 / 0;                                // Test it!
