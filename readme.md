@@ -10,18 +10,28 @@ Here is a way of how to use this component.
 ```php
 <?php
 
-// Import the library
-require_once 'ExceptionHandler.php';
+require_once 'ExceptionHandler.php';            // Call the ExceptionHandler file
+$exc = new ExceptionHandler;                    // Create a new one
 
-// Create a new exception handler
-$exc = new ExceptionHandler;
+$exc->start('example/template.html');           // Start it using a template
 
-// Start it with the template you want to use
-$exc->start('example/template.html');
+throw new Exception('Hello World');             // Test it!
+```
+An example of how is made a template can be found in the "example/" folder.
 
+## One more thing...
+
+I have added a new feature: you can now treat errors as exceptions.
+
+```php
+$exceptionHandler->handleErrorsWithLevel(-1);   // Transform errors into exceptions
+
+$result = 2 / 0;                                // Test it!
 ```
 
-You can design your own template watching how it is made in the "example/" folder.
+## Compatibility
+
+You will need PHP5.3 or higher as it uses closures, namespaces and SPL exceptions.
 
 ## License
 

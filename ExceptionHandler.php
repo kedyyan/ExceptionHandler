@@ -3,10 +3,8 @@
 /**
  * A simple exception handler.
  *
- * Requires PHP5.3+
- *
- * @package ExceptionHandler
  * @author  Fabien Nouaillat
+ * @version 1.1
  */
 class ExceptionHandler
 {
@@ -19,7 +17,7 @@ class ExceptionHandler
     /**
      * Turns on exception handling.
      *
-     * @param $template The path of the template file
+     * @param  $template The path of the template file
      *
      * @throws InvalidArgumentException if the file cannot be found
      */
@@ -32,10 +30,40 @@ class ExceptionHandler
             ));
         endif;
 
-        // Boot the output buffer
+        // Launches the output buffer
         ob_start();
         $this->template = $template;
         set_exception_handler(array($this, 'register'));
+    }
+
+    /**
+     * Turns off exception handling and restores the previous configuration.
+     *
+     */
+    public function stop()
+    {
+        // Shuts down the output buffer
+        ob_end_flush();
+        restore_exception_handler();
+    }
+
+    /**
+     * Transforms errors into exceptions
+     *
+     * @param mixed $level The degree of error reporting
+     */
+    public function handleErrorsWithLevel($level)
+    {
+        error_reporting($level);
+
+        set_error_handler(
+            function($severity, $message, $filename, $lineno) use ($level)
+            {
+                throw new \ErrorException(
+                    $message, 0, $severity, $filename, $lineno
+                );
+            }
+        );
     }
 
     /**
@@ -54,7 +82,7 @@ class ExceptionHandler
     }
 
     /**
-     * Calls the template, parse it and show it.
+     * Calls the template, parse it and display it.
      *
      */
     protected function display()
@@ -73,16 +101,5 @@ class ExceptionHandler
 
         // Displays the template
         echo $stream;
-    }
-
-    /**
-     * Turns off exception handling and restores the previous configuration.
-     *
-     */
-    public function stop()
-    {
-        // Shuts down the output buffer
-        ob_end_flush();
-        restore_exception_handler();
     }
 }
