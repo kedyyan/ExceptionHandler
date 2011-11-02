@@ -19,7 +19,7 @@ throw new Exception('Hello World');             // Test it!
 ```
 An example of how is made a template can be found in the "example/" folder.
 
-## One more thing...
+## New feature
 
 I have added a new feature: you can now treat errors as exceptions.
 
