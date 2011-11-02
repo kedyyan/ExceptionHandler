@@ -10,13 +10,14 @@ Here is a example of how to use it.
 ```php
 <?php
 
-require_once 'ExceptionHandler.php';            // Call the ExceptionHandler file
-$exc = new ExceptionHandler;                    // Create a new one
+require_once 'ExceptionHandler.php';                // Call the ExceptionHandler file
+$exceptionHandler = new ExceptionHandler;           // Create a new one
 
-$exc->start('example/template.html');           // Start it using a template
+$exceptionHandler->start('example/template.html');  // Start it using a template
 
-throw new Exception('Hello World');             // Test it!
+throw new Exception('You failed!');                 // Test it!
 ```
+
 An example of how is made a template can be found in the "example/" folder.
 
 ## New feature
@@ -26,9 +27,9 @@ I have added a new feature: you can now treat errors as exceptions.
 ```php
 <?php
 
-$exceptionHandler->handleErrorsWithLevel(-1);   // Transform errors into exceptions
+$exceptionHandler->handleErrorsWithLevel(-1);       // Transform errors into exceptions
 
-$result = 2 / 0;                                // Test it!
+$result = 2 / 0;                                    // Test it!
 ```
 
 ## Compatibility
